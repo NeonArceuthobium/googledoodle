@@ -5,21 +5,17 @@
   * Outline Elements
 */
 
-* {
-    outline: 1px dotted black;
-}
+/* External styling from: https://codepen.io/manikoth/pen/NNNBYe.css */
 
 /* Doodle Stage */
 #stage {
-  background: #ccc;
-  height: 300px;
+  background: #fff;
+  height: 215px;
   width: 600px;
+  /*  set dimensions of your google doodle frame here  */
 }
 
-#heart1 {
-  fill: red;
-}
-
-#heart2 {
-  fill: green;
+.sheen {
+  fill: white;
+  mask: url(#lens-mask);
 }
