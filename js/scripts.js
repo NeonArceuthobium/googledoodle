@@ -7,7 +7,7 @@ let gameActive = false; // Prevents multiple triggers
 const pill = document.querySelector(".gPill");
 const doodle = document.querySelector("#stage"); // Google doodle container
 const canvas = document.querySelector("#matrixCanvas"); // Canvas for the game
-//const ctx = canvas.getContext("2d"); // Ensure canvas context exists
+const ctx = canvas.getContext("2d"); // Ensure canvas context exists
 const searchInput = document.querySelector("input[type='text']"); // Selects the text input
 const searchContainer = document.querySelector("#search"); // Selects the div containing buttons
 const searchButtons = document.querySelectorAll("#search button"); // Selects both buttons

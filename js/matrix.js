@@ -1,7 +1,7 @@
 //matrix rain
 
 
-const ctx = canvas.getContext("2d");
+
 
 // Set the canvas size to match the screen
 canvas.width = window.innerWidth;
