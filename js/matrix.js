@@ -67,10 +67,10 @@ function animate() {
     if (!matrixRunning) return; // 🚨 Stop animation loop when false
     requestAnimationFrame(animate);
     drawMatrixRain();
-}
+};
 
 // Start the matrix rain effect
-animate();
+animate()
 
 // Function to stop matrix rain effect
 function stopMatrixEffect() {
