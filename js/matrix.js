@@ -66,6 +66,8 @@ function drawMatrixRain() {
     // Reset when the drop reaches the bottom
     if (drop.y * fontSize > canvas.height && Math.random() > drop.resetThreshold) {
       drop.y = 0;
+        // Assign a new random speed
+  drop.fallSpeed = 0.5 + Math.random() * 1.5;
     }
   });
 }
