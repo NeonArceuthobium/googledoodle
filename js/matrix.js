@@ -8,7 +8,7 @@ const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()".split("");
 const fontSize = 30;
 const lineSpacing = 1.5; // Adjust this to control vertical spacing
 const columns = Math.floor(canvas.width / fontSize);
-const speedFactor = .2; // Adjusted for more natural fall speed
+const speedFactor = .15; // Adjusted for more natural fall speed
 const updateSpeed = 8; // Lower values = faster updates
 
 // Create an array of drops, one per column
