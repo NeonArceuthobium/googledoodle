@@ -1,81 +1,89 @@
-//matrix rain
-
-
-
-
 // Set the canvas size to match the screen
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()".split(""); //what does .split do?
-const fontSize = 16;
-const columns = Math.floor(canvas.width / fontSize);
-const speedFactor = .15; // Speed at which characters fall
-const characterUpdateRate = 16; // Lower value = faster character change
 
+
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()".split("");
+const fontSize = 30;
+const lineSpacing = 1.5; // Adjust this to control vertical spacing
+const columns = Math.floor(canvas.width / fontSize);
+const speedFactor = .2; // Adjusted for more natural fall speed
+const updateSpeed = 8; // Lower values = faster updates
+
+// Create an array of drops, one per column
 const drops = Array.from({ length: columns }, () => ({
-  y: Math.random() * -canvas.height, // Ensure rain starts from the top
-  textStack: Array.from({ length: Math.floor(canvas.height / fontSize) }, () =>
+  y: Math.random() * -canvas.height, // Start above the screen
+  textStack: Array.from({ length: Math.floor(canvas.height / (fontSize * lineSpacing)) }, () =>
     characters[Math.floor(Math.random() * characters.length)]
   ),
-  updateCounter: Math.floor(Math.random() * characterUpdateRate),
-  resetThreshold: Math.random() * 0.02 + 0.98 // Controls how often drops reset
+  updateCounter: Math.floor(Math.random() * 16),
+  resetThreshold: Math.random() * 0.02 + 0.98,
+  fallSpeed: 0.5 + Math.random() * 1.5 // Each column falls at a different speed
 }));
 
 function drawMatrixRain() {
-  ctx.fillStyle = "rgba(0, 0, 0, 0.05)"; // Transparent overlay for smooth fading effect
+  // Dark translucent overlay for smooth fade effect
+  ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   drops.forEach((drop, i) => {
     const x = i * fontSize;
     drop.updateCounter++;
 
-    if (drop.updateCounter >= characterUpdateRate) {
+    if (drop.updateCounter >= updateSpeed) {
       drop.updateCounter = 0;
-      drop.textStack.pop(); // Remove oldest character
-      drop.textStack.unshift(characters[Math.floor(Math.random() * characters.length)]); // Add new character at the top
+      drop.textStack.pop(); // Remove the last character
+      drop.textStack.unshift(characters[Math.floor(Math.random() * characters.length)]); // Add a new character at the top
     }
 
     drop.textStack.forEach((char, index) => {
-      const y = (drop.y - index) * fontSize;
-      if (y < 0) return; // Don't draw above the screen
-
+      const y = (drop.y - index * lineSpacing) * fontSize;
+      if (y < 0) return;
+    
+      ctx.save(); // Save drawing state (prevents global effects)
+    
+      // Green glow effect for the text trail
+      let opacity = 1 - index * 0.1; // Trail fades out smoothly
+      ctx.fillStyle = `rgba(0, 255, 70, ${opacity})`;
+    
+      // Lead character is **extra bright** with glow
       if (index === 0) {
-        ctx.fillStyle = "#FFFFFF"; // Lead character in white
-      } else {
-        ctx.fillStyle = `rgba(0, 255, 0, ${1 - index * 0.1})`; // Green trail with opacity fade
+        ctx.fillStyle = "rgba(200, 255, 200, 1)"; // White-green lead character
+        ctx.shadowColor = "rgba(0, 255, 70, 1)"; // Glow color
+        ctx.shadowBlur = 50; // Only lead character gets glow
       }
-
+    
       ctx.font = `${fontSize}px monospace`;
       ctx.fillText(char, x, y);
+    
+      ctx.restore(); // Restore to prevent glow stacking
     });
+    
 
-    drop.y += speedFactor;
+    drop.y += drop.fallSpeed * speedFactor; // Apply individual fall speeds
 
-    // Reset only when the drop has fully fallen off screen
+    // Reset when the drop reaches the bottom
     if (drop.y * fontSize > canvas.height && Math.random() > drop.resetThreshold) {
-      drop.y = 0; // Reset to top of the screen
+      drop.y = 0;
     }
   });
 }
 
-
-
-let matrixRunning = true; // Global flag to control the animation loop
+let matrixRunning = true;
 
 function animate() {
-    if (!matrixRunning) return; // 🚨 Stop animation loop when false
-    requestAnimationFrame(animate);
-    drawMatrixRain();
-};
+  if (!matrixRunning) return;
+  requestAnimationFrame(animate);
+  drawMatrixRain();
+}
 
-// Start the matrix rain effect
-animate()
+// Start the Matrix effect
+animate();
 
-// Function to stop matrix rain effect
+// Stop function
 function stopMatrixEffect() {
-    matrixRunning = false; // This stops the `animate()` loop
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
-    console.log("Matrix effect stopped.");
-    
+  matrixRunning = false;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  console.log("Matrix effect stopped.");
 }
