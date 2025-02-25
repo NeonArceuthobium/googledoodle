@@ -8,6 +8,10 @@ const pill = document.querySelector(".gPill");
 const doodle = document.querySelector("#stage"); // Google doodle container
 const canvas = document.querySelector("#matrixCanvas"); // Canvas for the game
 //const ctx = canvas.getContext("2d"); // Ensure canvas context exists
+const searchInput = document.querySelector("input[type='text']"); // Selects the text input
+const searchContainer = document.querySelector("#search"); // Selects the div containing buttons
+const searchButtons = document.querySelectorAll("#search button"); // Selects both buttons
+
 
 // 2️⃣ SHEEN ANIMATION FUNCTION (Keeps the Google sheen moving)
 function animateSheen(elementId, startX, startY, endX, endY, duration = 1) {
@@ -73,6 +77,25 @@ pill.addEventListener("click", () => {
         ease: "power4.inOut",
         onComplete: () => { doodle.style.display = "none"; }
     });
+
+        // 🌟 Fade out the search input
+        gsap.to(searchInput, {
+            opacity: 0,
+            y: -20, // Moves up while fading out
+            duration: 1,
+            ease: "power2.inOut",
+            onComplete: () => { searchInput.style.display = "none"; }
+        });
+    
+        // 🌟 Fade out both buttons
+        gsap.to(searchButtons, {
+            opacity: 0,
+            y: -20, // Moves up while fading out
+            duration: 1,
+            stagger: 0.2, // Buttons fade out one after the other
+            ease: "power2.inOut",
+            onComplete: () => { searchButtons.forEach(btn => btn.style.display = "none"); }
+        });
 
     // Background transitions to chaotic magenta
     gsap.to("body", { 
