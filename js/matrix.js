@@ -7,7 +7,7 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()".split("");
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()".split(""); //what does .split do?
 const fontSize = 16;
 const columns = Math.floor(canvas.width / fontSize);
 const speedFactor = .15; // Speed at which characters fall
