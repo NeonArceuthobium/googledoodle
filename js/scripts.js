@@ -48,16 +48,18 @@ pill.addEventListener("click", () => {
     if (gameActive) return; // Avoid multiple triggers
     gameActive = true;
 
+    stopMatrixEffect(); // 🛑 Stop matrix effect
+
     // Kill sheens to stop looping animations before destruction
     leftSheen.kill();
     rightSheen.kill();
 
     // Pill "detonates" (expands, rotates, fades out)
     gsap.to(pill, { 
-        scale: 5, 
+        scale: 2, 
         opacity: 0, 
-        rotation: 360, 
-        duration: 1, 
+        rotation: 720, 
+        duration: 2, 
         ease: "power2.out"
     });
 

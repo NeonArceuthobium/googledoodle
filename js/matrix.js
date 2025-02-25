@@ -59,9 +59,23 @@ function drawMatrixRain() {
   });
 }
 
+
+
+let matrixRunning = true; // Global flag to control the animation loop
+
 function animate() {
-  requestAnimationFrame(animate);
-  drawMatrixRain();
+    if (!matrixRunning) return; // 🚨 Stop animation loop when false
+    requestAnimationFrame(animate);
+    drawMatrixRain();
 }
 
+// Start the matrix rain effect
 animate();
+
+// Function to stop matrix rain effect
+function stopMatrixEffect() {
+    matrixRunning = false; // This stops the `animate()` loop
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+    console.log("Matrix effect stopped.");
+    
+}

@@ -7,3 +7,6 @@ Will be adding the "pills" from the matrix, figuring out interraction and color 
 [Figma Collage]([https://www.figma.com/file/KIEiC0Tgx5IF1BhpTLZhn0/Google-Doodle?node-id=0%3A1](https://www.figma.com/design/NGeULonN0wcOezvWMyqWWl/Google-Doodle-(example)-(Copy)?t=DqZ4hV9ZyOMIcDkw-0))
 
 ## Resources
+
+[GSAP](https://gsap.com/)
+[ChatGPT](https://chatgpt.com/)
