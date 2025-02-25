@@ -1,21 +1,34 @@
-/* My Awesome Styles */
-
-/* Diagnostic Styling 
-  * Change Background Color
-  * Outline Elements
-*/
-
 /* External styling from: https://codepen.io/manikoth/pen/NNNBYe.css */
 
 /* Doodle Stage */
+body {
+  
+  /* background: black; */
+}
 #stage {
-  background: #fff;
+  /* background: grey; */
   height: 215px;
   width: 600px;
-  /*  set dimensions of your google doodle frame here  */
+  z-index: 10;
 }
 
 .sheen {
   fill: white;
   mask: url(#lens-mask);
 }
+
+.letter {
+  fill: white;
+  
+}
+
+#matrixCanvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
