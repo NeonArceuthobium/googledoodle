@@ -1,6 +1,6 @@
 # My Topic Google Doodle
 
-Will be adding the "pills" from the matrix, figuring out interraction and color management. I'm aware my art direction is all over the place currently. Waiting to crack it.
+Magenta exists as an artifact that the human mind creates when confronted with the maximum amount of blue, and red, light simultaneously. I wanted to connect this to the blue and red pills from the matrix and have a little interactable bit.
 
 ## Collage
 
