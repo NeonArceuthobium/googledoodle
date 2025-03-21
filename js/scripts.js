@@ -116,5 +116,40 @@ pill.addEventListener("click", () => {
 // 6️⃣ FUNCTION TO CLEAR CANVAS AND START BULLET HELL
 function startBulletHell() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clears matrix rain effect
-    initializeBulletHell(); // 🚀 Starts the game
+    showTextBox(); // 🚀 Starts the game
 }
+
+function showTextBox() {
+    // Create a new div for the textbox
+    const textBox = document.createElement("div");
+    textBox.id = "magenta-textbox";
+    textBox.textContent = "Welcome to the Magenta Room...";
+
+    // Apply styles to center it on screen
+    Object.assign(textBox.style, {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        padding: "1rem 2rem",
+        fontSize: "1.5rem",
+        color: "white",
+        backgroundColor: "#272727",
+        border: "2px solid white",
+        borderRadius: "12px",
+        textAlign: "center",
+        zIndex: 10,
+        opacity: 0
+    });
+
+    // Append to stage
+    doodle.appendChild(textBox);
+
+    // Fade it in with GSAP
+    gsap.to(textBox, {
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out"
+    });
+}
+
